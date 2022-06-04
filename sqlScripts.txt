@@ -1,0 +1,38 @@
+
+-- CREATE DATABASE mydb
+
+-- CREATE TABLE Recipe (  
+--     recipeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+--     imageUrl VARCHAR(512) NOT NULL,
+--     title VARCHAR(255) NOT NULL,
+--     totalTime VARCHAR(255) NOT NULL,
+--     popularity VARCHAR(255) NOT NULL,
+--     vegan BOOLEAN NOT NULL,s
+--     gluten BOOLEAN NOT NULL
+-- );
+
+
+-- CREATE TABLE User (  
+--     username VARCHAR(255) NOT NULL PRIMARY KEY COMMENT 'Primary Key',
+--     firstName VARCHAR(512) NOT NULL,
+--     lastName VARCHAR(255) NOT NULL,
+--     cuntry VARCHAR(255) NOT NULL,
+--     userPassword VARCHAR(255) NOT NULL,
+--     confirmPassword VARCHAR(255) NOT NULL,
+--     email VARCHAR(255) NOT NULL
+-- );
+
+-- CREATE TABLE favoriteRecipes (  
+--     username VARCHAR(255) NOT NULL,
+--     recipeId INT NOT NULL
+-- );
+
+-- CREATE TABLE userRecipes (  
+--     username VARCHAR(255) NOT NULL,
+--     recipeId INT NOT NULL
+-- );
+
+-- CREATE TABLE familyRecipes (  
+--     username VARCHAR(255) NOT NULL,
+--     recipeId INT NOT NULL
+-- );
