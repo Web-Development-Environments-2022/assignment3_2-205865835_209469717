@@ -2,8 +2,21 @@ var express = require("express");
 var router = express.Router();
 const recipes_utils = require("./utils/recipes_utils");
 
-router.get("/", (req, res) => res.send("im here"));
+router.get("/", (req, res) => res.send("im here at the recipes"));
 
+
+
+/**
+ * This path returns 3 random preview recipes
+ */
+router.get("/:random", async (req, res, next) => { // not currently working
+  try{
+    let random_3_recipes = await recipes_utils.getRandomThreeRecipes();
+    res.send(random_3_recipes);
+  }catch (error){
+    next(error);
+  }
+});
 
 
 /**
