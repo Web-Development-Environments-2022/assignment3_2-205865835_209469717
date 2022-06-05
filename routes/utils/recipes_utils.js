@@ -66,4 +66,4 @@ async function getRandomThreeRecipes(){ // not currently working. has an error t
 
 exports.getRecipeDetails = getRecipeDetails;
 
-
+exports.getRandomThreeRecipes = getRandomThreeRecipes;

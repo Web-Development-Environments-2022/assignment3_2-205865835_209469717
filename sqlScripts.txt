@@ -1,4 +1,3 @@
-
 -- CREATE DATABASE mydb
 
 -- CREATE TABLE Recipe (  
