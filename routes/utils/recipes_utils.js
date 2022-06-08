@@ -38,8 +38,7 @@ async function getSeachResults(query, number, cuisine, diet, intolerance){
             intolerance: intolerance,
             instructionsRequired: true,
             addRecipeInformation: true,
-            apiKey: process.env.spooncular_apiKey
-            
+            apiKey: process.env.spooncular_apiKey            
         }
     });    
 }
@@ -111,7 +110,7 @@ async function getRandomThreeRecipes(){
 
 async function recipeSearch(query, number, cuisine, diet, intolerance){
     let seach_results = await getSeachResults(query, number, cuisine, diet, intolerance);   
-    var all_recipes = []
+    let all_recipes = []
     for (let i = 0; i < seach_results.data.results.length; i++){
         if (i == number)
             break;
@@ -120,7 +119,7 @@ async function recipeSearch(query, number, cuisine, diet, intolerance){
     return  extractPreviewRecipesDetails(all_recipes);    
 }
 
-
+exports.getRecipesPreview = getRecipesPreview;
 exports.getRecipeDetails = getRecipeDetails;
 exports.recipeSearch = recipeSearch;
 exports.getRandomThreeRecipes = getRandomThreeRecipes;

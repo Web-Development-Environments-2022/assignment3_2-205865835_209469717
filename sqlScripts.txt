@@ -12,13 +12,15 @@ CREATE DATABASE mydb
 
 
 CREATE TABLE users (      
-    username VARCHAR(255) PRIMARY KEY NOT NULL,
+    userId INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255)  NOT NULL,
     firstName VARCHAR(512) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     cuntry VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL
-);
+)AUTO_INCREMENT=1;
+
 
 -- CREATE TABLE favoriteRecipes (  
 --     username VARCHAR(255) NOT NULL,
