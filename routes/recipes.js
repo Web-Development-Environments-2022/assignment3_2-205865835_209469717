@@ -6,21 +6,22 @@ router.get("/", (req, res) => res.send("im here at the recipes"));
 
 
 /**
- * This path returns recipes based on a search
+ * This path returns a full details of a recipe by its id
  */
- router.get("/:search/:query/:number?/:cuisine?/:diet?/:intolerance?", async (req, res, next) => {
-  try{    
-    let seach_results = await recipes_utils.recipeSearch(req.params.query, req.params.number, req.params.cuisine, req.params.diet, req.params.intolerance);
-    res.send(seach_results);
-  }catch (error){
+ router.get("/recipeDetails/:recipeId", async (req, res, next) => {
+  try {
+    const recipe = await recipes_utils.getRecipeDetails(req.params.recipeId);
+    res.send(recipe);
+  } catch (error) {
     next(error);
   }
 });
 
+
 /**
  * This path returns 3 random preview recipes
  */
- router.get("/:random", async (req, res, next) => {
+ router.get("/random", async (req, res, next) => {
   try{
     let random_3_recipes = await recipes_utils.getRandomThreeRecipes();
     res.send(random_3_recipes);
@@ -31,16 +32,20 @@ router.get("/", (req, res) => res.send("im here at the recipes"));
 
 
 /**
- * This path returns a full details of a recipe by its id
+ * This path returns recipes based on a search
  */
-router.get("/:recipeId", async (req, res, next) => {
-  try {
-    const recipe = await recipes_utils.getRecipeDetails(req.params.recipeId);
-    res.send(recipe);
-  } catch (error) {
+ router.get("/search/:query/:number?/:cuisine?/:diet?/:intolerance?", async (req, res, next) => {
+  try{    
+    let seach_results = await recipes_utils.recipeSearch(req.params.query, req.params.number, req.params.cuisine, req.params.diet, req.params.intolerance);
+    res.send(seach_results);
+  }catch (error){
     next(error);
   }
 });
+
+
+
+
 
 
 
