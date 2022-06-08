@@ -52,6 +52,51 @@ router.get('/favorites', async (req,res,next) => {
   }
 });
 
+/**
+ * This path creates a user recipe
+ */
+router.post("/createRecipe", async (req, res, next) => {
+  try {
+    let recipe_details = {
+      imageUrl: req.body.imageUrl,
+      title: req.body.title,
+      totalTime: req.body.totalTime,
+      popularity: req.body.popularity,
+      vegan: req.body.vegan,
+      gluten: req.body.gluten,
+      ingredients: req.body.ingredients,
+      instructions: req.body.instructions,
+      servings: req.body.servings
+    }    
+    const user_id = req.session.user_id;    
+
+    await DButils.execQuery(
+      `INSERT INTO userrecipes VALUES (0, '${user_id}', '${recipe_details.imageUrl}', '${recipe_details.title}', '${recipe_details.totalTime}', '${recipe_details.popularity}', '${recipe_details.vegan}', '${recipe_details.gluten}', '${recipe_details.ingredients}', '${recipe_details.instructions}', '${recipe_details.servings}')`
+    );
+    res.status(201).send({ message: "recipe added", success: true });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+/**
+ * This path returns the user made recipes of the currrent user in the sessionr
+ */
+//  router.get('/userRecipes', async (req,res,next) => {
+//   try{
+//     const user_id = req.session.user_id;
+//     let user_recipes = {};
+//     const recipes_id = await user_utils.getUserRecipes(user_id);
+//     let recipes_id_array = [];
+//     recipes_id.map((element) => recipes_id_array.push(element.recipe_id)); //extracting the recipe ids into array
+//     const results = await recipe_utils.getRecipesPreview(recipes_id_array);
+//     res.status(200).send(results);
+//   } catch(error){
+//     next(error); 
+//   }
+// });
+
 
 
 
