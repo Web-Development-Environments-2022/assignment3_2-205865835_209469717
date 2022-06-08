@@ -6,30 +6,38 @@ CREATE DATABASE mydb
 --     title VARCHAR(255) NOT NULL,
 --     totalTime VARCHAR(255) NOT NULL,
 --     popularity VARCHAR(255) NOT NULL,
---     vegan BOOLEAN NOT NULL,s
+--     vegan BOOLEAN NOT NULL,
 --     gluten BOOLEAN NOT NULL
 -- );
 
 
--- CREATE TABLE users (  
---     username VARCHAR(255) NOT NULL PRIMARY KEY COMMENT 'Primary Key',
---     firstName VARCHAR(512) NOT NULL,
---     lastName VARCHAR(255) NOT NULL,
---     cuntry VARCHAR(255) NOT NULL,
---     userPassword VARCHAR(255) NOT NULL,
---     confirmPassword VARCHAR(255) NOT NULL,
---     email VARCHAR(255) NOT NULL
--- );
+CREATE TABLE users (      
+    username VARCHAR(255) PRIMARY KEY NOT NULL,
+    firstName VARCHAR(512) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    cuntry VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
 
 -- CREATE TABLE favoriteRecipes (  
 --     username VARCHAR(255) NOT NULL,
 --     recipeId INT NOT NULL
 -- );
 
--- CREATE TABLE userRecipes (  
---     username VARCHAR(255) NOT NULL,
---     recipeId INT NOT NULL
--- );
+CREATE TABLE userRecipes (  
+    userId INT NOT NULL PRIMARY KEY COMMENT 'Primary Key',    
+    imageUrl VARCHAR(512) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    totalTime VARCHAR(255) NOT NULL,
+    popularity VARCHAR(255) NOT NULL,
+    vegan BOOLEAN NOT NULL,
+    gluten BOOLEAN NOT NULL,
+    ingredients VARCHAR(1024) NOT NULL,
+    instructions VARCHAR(1024) NOT NULL,
+    servings INT NOT NULL
+);
+
 
 -- CREATE TABLE familyRecipes (  
 --     username VARCHAR(255) NOT NULL,
