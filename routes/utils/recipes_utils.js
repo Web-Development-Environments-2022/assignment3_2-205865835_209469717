@@ -124,4 +124,3 @@ async function recipeSearch(query, number, cuisine, diet, intolerance){
 exports.getRecipeDetails = getRecipeDetails;
 exports.recipeSearch = recipeSearch;
 exports.getRandomThreeRecipes = getRandomThreeRecipes;
-
