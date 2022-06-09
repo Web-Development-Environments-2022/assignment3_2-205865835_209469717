@@ -28,7 +28,8 @@ CREATE TABLE users (
 -- );
 
 CREATE TABLE userRecipes (  
-    userId INT NOT NULL PRIMARY KEY COMMENT 'Primary Key',    
+    recipe_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,    
     imageUrl VARCHAR(512) NOT NULL,
     title VARCHAR(255) NOT NULL,
     totalTime VARCHAR(255) NOT NULL,
@@ -38,10 +39,17 @@ CREATE TABLE userRecipes (
     ingredients VARCHAR(1024) NOT NULL,
     instructions VARCHAR(1024) NOT NULL,
     servings INT NOT NULL
-);
+)AUTO_INCREMENT=1;
 
 
 -- CREATE TABLE familyRecipes (  
 --     username VARCHAR(255) NOT NULL,
 --     recipeId INT NOT NULL
 -- );
+
+
+CREATE TABLE userHistory (  
+    recipe_id INT NOT NULL,
+    user_id INT NOT NULL,    
+    recipe_count int NOT NULL PRIMARY KEY AUTO_INCREMENT
+)AUTO_INCREMENT=1;

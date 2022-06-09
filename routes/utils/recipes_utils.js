@@ -46,7 +46,7 @@ async function getSeachResults(query, number, cuisine, diet, intolerance){
 
 async function getRecipeDetails(recipe_id) {
     let recipe_info = await getRecipeInformation(recipe_id);
-    let { id, title, readyInMinutes, image, aggregateLikes, vegan, vegetarian, glutenFree } = recipe_info.data;
+    let { id, title, readyInMinutes, image, aggregateLikes, vegan, vegetarian, glutenFree, extendedIngredients, instructions, servings } = recipe_info.data;
     return {
         id: id,
         title: title,
@@ -56,8 +56,18 @@ async function getRecipeDetails(recipe_id) {
         vegan: vegan,
         vegetarian: vegetarian,
         glutenFree: glutenFree,
-        
+        extendedIngredients: originalIngredients(extendedIngredients),
+        instructions: instructions,
+        servings: servings
     }
+}
+
+function originalIngredients(extendedIngredients){
+    ingredients = [];
+    for (let i = 0 ; i < extendedIngredients.length; i ++){
+        ingredients.push(extendedIngredients[i].original);
+    }
+    return ingredients;
 }
 
 function extractPreviewRecipesDetails(recipes_info){
@@ -90,13 +100,14 @@ function extractPreviewRecipesDetails(recipes_info){
 }
 
 async function getRecipesPreview(recipes_ids_list){
-    let promises = [];
-    recipes_ids_list.map((id) =>{
-        promises.push(getRecipeInformation(id));
-    });
+    let promises = [];  
+    for (let i = 0 ; i < recipes_ids_list.length; i ++) {        
+        promises.push(getRecipeDetails(recipes_ids_list[i]));        
+    }
     let info_res = await Promise.all(promises);
-    return getRecipeDetails(info_res)
+    return info_res;
 }
+
 
 async function getRandomThreeRecipes(){ 
     let random_pool = await getRandomRecipes();
