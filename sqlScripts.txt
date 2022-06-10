@@ -32,7 +32,7 @@ CREATE TABLE userRecipes (
     user_id INT NOT NULL,    
     imageUrl VARCHAR(512) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    totalTime VARCHAR(255) NOT NULL,
+    totalTime INT NOT NULL,
     popularity VARCHAR(255) NOT NULL,
     vegan BOOLEAN NOT NULL,
     gluten BOOLEAN NOT NULL,

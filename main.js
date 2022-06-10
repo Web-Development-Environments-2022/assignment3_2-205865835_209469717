@@ -81,10 +81,6 @@ app.use("/user", user);
 app.use("/recipes", recipes);
 app.use(auth);
 app.use("/familyrecipes",familyrecipes);
-<<<<<<< HEAD
-=======
-
->>>>>>> 83890e9e58dbbacce58376b93882862d60883084
 
 // Default router
 app.use(function (err, req, res, next) {

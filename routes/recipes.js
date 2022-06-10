@@ -35,7 +35,7 @@ router.get("/", (req, res) => res.send("im here at the recipes"));
 /**
  * This path returns recipes based on a search
  */
- router.get("/search/:query/:number?/:cuisine?/:diet?/:intolerance?", async (req, res, next) => {
+ router.get("/search/:query/:number/:cuisine?/:diet?/:intolerance?", async (req, res, next) => {
   try{    
     let seach_results = await recipes_utils.recipeSearch(req.params.query, req.params.number, req.params.cuisine, req.params.diet, req.params.intolerance);
     res.send(seach_results);

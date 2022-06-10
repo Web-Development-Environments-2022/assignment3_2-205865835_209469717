@@ -4,9 +4,6 @@ need to add get most recent recipes
 need to add get recipe by complex seach, includes query, number, cuisine, diet and intolerance
 need to add create personal recipe & get personal recipes
 need to add user id to user table
-<<<<<<< HEAD
 need to add get family recipes
-=======
 need to add post to add recipe history
 need to add get to retrieve 3 recipe's from history
->>>>>>> 83890e9e58dbbacce58376b93882862d60883084
