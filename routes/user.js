@@ -83,21 +83,46 @@ router.post("/createRecipe", async (req, res, next) => {
 /**
  * This path returns the user made recipes of the currrent user in the sessionr
  */
-//  router.get('/userRecipes', async (req,res,next) => {
-//   try{
-//     const user_id = req.session.user_id;
-//     let user_recipes = {};
-//     const recipes_id = await user_utils.getUserRecipes(user_id);
-//     let recipes_id_array = [];
-//     recipes_id.map((element) => recipes_id_array.push(element.recipe_id)); //extracting the recipe ids into array
-//     const results = await recipe_utils.getRecipesPreview(recipes_id_array);
-//     res.status(200).send(results);
-//   } catch(error){
-//     next(error); 
-//   }
-// });
+ router.get('/userRecipes', async (req,res,next) => {
+  try{
+    const user_id = req.session.user_id;
+    const results = await user_utils.getUserRecipes(user_id);
+    res.status(200).send(results);
+  } catch(error){
+    next(error); 
+  }
+});
 
 
+/**
+ * This path gets body with recipeId and save this recipe in the history list of the logged-in user
+ */
+ router.post('/history', async (req,res,next) => {
+  try{
+    const user_id = req.session.user_id;
+    const recipe_id = req.body.recipeId;
+    await user_utils.markWatched(user_id,recipe_id);
+    res.status(200).send("The Recipe is successfully saved to history");
+    } catch(error){
+    next(error);
+  }
+})
+
+/**
+ * This route returns the last 3 recipes the logged-in user has watched
+ */
+ router.get('/history', async (req,res,next) => {
+  try{
+    const user_id = req.session.user_id;
+    const recipes_id = await user_utils.getHistoryRecipes(user_id);
+    let recipes_id_array = [];
+    recipes_id.map((element) => recipes_id_array.push(element.recipe_id)); //extracting the recipe ids into array        
+    const results = await recipe_utils.getRecipesPreview(recipes_id_array);
+    res.status(200).send(results);
+  } catch(error){
+    next(error); 
+  }
+});
 
 
 module.exports = router;
