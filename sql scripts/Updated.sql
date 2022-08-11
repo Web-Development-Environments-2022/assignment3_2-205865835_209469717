@@ -1,14 +1,15 @@
+-- Active: 1659103822858@@127.0.0.1@3306@mydb
 -- CREATE DATABASE mydb
 
--- CREATE TABLE Recipe (  
---     recipeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
---     imageUrl VARCHAR(512) NOT NULL,
---     title VARCHAR(255) NOT NULL,
---     totalTime VARCHAR(255) NOT NULL,
---     popularity VARCHAR(255) NOT NULL,
---     vegan BOOLEAN NOT NULL,
---     gluten BOOLEAN NOT NULL
--- );
+CREATE TABLE Recipe (  
+    recipeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+    imageUrl VARCHAR(512) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    totalTime VARCHAR(255) NOT NULL,
+    popularity VARCHAR(255) NOT NULL,
+    vegan BOOLEAN NOT NULL,
+    gluten BOOLEAN NOT NULL
+);
 
 
 CREATE TABLE users (      
@@ -28,13 +29,12 @@ CREATE TABLE favoriteRecipes (
 );
 
 CREATE TABLE userRecipes (  
-	recipe_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
+    recipe_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,    
     imageUrl VARCHAR(512) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    totalTime VARCHAR(255) NOT NULL,
-    aggregateLikes VARCHAR(255) NOT NULL,
-	vegetarian BOOLEAN NOT NULL, 
+    totalTime INT NOT NULL,
+    popularity VARCHAR(255) NOT NULL,
     vegan BOOLEAN NOT NULL,
     gluten BOOLEAN NOT NULL,
     ingredients VARCHAR(1024) NOT NULL,

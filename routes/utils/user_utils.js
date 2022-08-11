@@ -13,7 +13,7 @@ async function getFavoriteRecipes(user_id){
     return recipes_id;
 }
 
-async function getUserRecipes(user_id){
+async function getUserRecipes(user_id){ // add select (columns) from..
     const recipes_id = await DButils.execQuery(`select * from userrecipes where user_id='${user_id}'`);
     return recipes_id;
 }
@@ -23,6 +23,13 @@ async function getHistoryRecipes(user_id){
     return recipes_id;
 }
 
+async function getLatestThree(user_id){
+    const recipes_id = await DButils.execQuery(`select DISTINCT recipe_id from userhistory where user_id='${user_id}' ORDER BY recipe_count desc LIMIT 3`);
+    return recipes_id;
+}
+
+
+exports.getLatestThree = getLatestThree;
 exports.getHistoryRecipes = getHistoryRecipes;
 exports.markWatched = markWatched;
 exports.getUserRecipes = getUserRecipes

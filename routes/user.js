@@ -57,20 +57,21 @@ router.get('/favorites', async (req,res,next) => {
 router.post("/createRecipe", async (req, res, next) => {
   try {
     let recipe_details = {
-      imageUrl: req.body.imageUrl,
       title: req.body.title,
+      imageUrl: req.body.imageUrl,
       totalTime: req.body.totalTime,
       popularity: req.body.popularity,
       vegan: req.body.vegan,
+      vegeterian: req.body.vegetarian,
       gluten: req.body.gluten,
       ingredients: req.body.ingredients,
       instructions: req.body.instructions,
       servings: req.body.servings
     }    
-    const user_id = req.session.user_id;    
+    const user_id = req.session.user_id;
 
     await DButils.execQuery(
-      `INSERT INTO userrecipes VALUES (0, '${user_id}', '${recipe_details.imageUrl}', '${recipe_details.title}', '${recipe_details.totalTime}', '${recipe_details.popularity}', '${recipe_details.vegan}', '${recipe_details.gluten}', '${recipe_details.ingredients}', '${recipe_details.instructions}', '${recipe_details.servings}')`
+      `INSERT INTO userrecipes (user_id ,imageUrl ,title ,totalTime ,aggregateLikes ,vegetarian, vegan,gluten ,ingredients ,instructions ,servings) VALUES ('${user_id}', '${recipe_details.imageUrl}', '${recipe_details.title}', '${recipe_details.totalTime}', '${recipe_details.popularity}', '${recipe_details.vegeterian}', '${recipe_details.vegan}', '${recipe_details.gluten}', '${recipe_details.ingredients}', '${recipe_details.instructions}', '${recipe_details.servings}')`
     );
     res.status(201).send({ message: "recipe added", success: true });
   } catch (error) {
@@ -107,6 +108,8 @@ router.post("/createRecipe", async (req, res, next) => {
   }
 })
 
+
+
 /**
  * This route returns the last 3 recipes the logged-in user has watched
  */
@@ -114,14 +117,19 @@ router.post("/createRecipe", async (req, res, next) => {
   try{
     const user_id = req.session.user_id;
     const recipes_id = await user_utils.getHistoryRecipes(user_id);
-    // let recipes_id_array = [];
-    // recipes_id.map((element) => recipes_id_array.push(element.recipe_id)); //extracting the recipe ids into array        
-    // const results = await recipe_utils.getRecipesPreview(recipes_id_array);
     res.status(200).send(recipes_id);
   } catch(error){
     next(error); 
   }
 });
+
+// router.get("/latestHistory", async (req,res,next)=>{
+//   try{
+//    const user_id = req.session.user_id;
+//    const latest = await user_utils.getLatestThree(user_id);
+//    res.status(200).send(latest);
+//   }catch(err){next(err)}
+//  });
 
 
 module.exports = router;
