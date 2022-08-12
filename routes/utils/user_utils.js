@@ -1,3 +1,4 @@
+const { default: Axios } = require("axios");
 const DButils = require("./DButils");
 
 async function markAsFavorite(user_id, recipe_id){
@@ -29,6 +30,12 @@ async function getLatestThree(user_id){
 }
 
 
+async function getUserMadeRecipe(user_id,recipe_id){
+    DButils.execQuery(`select recipe_id from userhistory where user_id='${user_id}' ORDER BY recipe_count desc LIMIT 3`);
+    return recipes_id;
+}
+
+exports.getUserMadeRecipe=getUserMadeRecipe;
 exports.getLatestThree = getLatestThree;
 exports.getHistoryRecipes = getHistoryRecipes;
 exports.markWatched = markWatched;
