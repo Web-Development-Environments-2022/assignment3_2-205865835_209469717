@@ -96,6 +96,7 @@ router.get('/favorites', async (req,res,next) => {
 /**
  * This path returns a user made recipe
  */
+<<<<<<< HEAD
 router.get('/userRecipes/:recipeId', async (req,res,next) => {
   try{
     const user_id = req.session.user_id;
@@ -105,6 +106,19 @@ router.get('/userRecipes/:recipeId', async (req,res,next) => {
     next(error); 
   }
 });
+=======
+
+// router.get('/userRecipes/:recipeId', async (req,res,next) => {
+//   try{
+//     const user_id = req.session.user_id;
+//     const results = await user_utils.getUserRecipes(user_id);
+//     res.status(200).send(results);
+//   } catch(error){
+//     next(error); 
+//   }
+// });
+
+>>>>>>> 165f0b46069cab3a7cad3c0e7760c9b3b07b2210
 
 /**
  * This path gets body with recipe_id and save this recipe in the history list of the logged-in user
@@ -120,6 +134,8 @@ router.get('/userRecipes/:recipeId', async (req,res,next) => {
   }
 })
 
+
+
 /**
  * This route returns the recipes the logged-in user has watched
  */
@@ -133,6 +149,7 @@ router.get('/userRecipes/:recipeId', async (req,res,next) => {
   }
 });
 
+<<<<<<< HEAD
 /**
  * This route returns the last 3 recipes the logged-in user has watched
  */
@@ -251,6 +268,15 @@ router.delete('/resetMeal', async (req,res,next) => {
   }
 });
 
+=======
+// router.get("/latestHistory", async (req,res,next)=>{
+//   try{
+//    const user_id = req.session.user_id;
+//    const latest = await user_utils.getLatestThree(user_id);
+//    res.status(200).send(latest);
+//   }catch(err){next(err)}
+//  });
+>>>>>>> 165f0b46069cab3a7cad3c0e7760c9b3b07b2210
 
 
 module.exports = router;
