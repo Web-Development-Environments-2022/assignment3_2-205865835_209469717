@@ -18,6 +18,17 @@ async function getRecipeInformation(recipe_id) {
     });
 }
 
+
+async function getRecipeAnalyzed(recipe_id) {
+    let instructions =  await axios.get(`${api_domain}/${recipe_id}/analyzedInstructions`, {
+        params: {
+            apiKey: process.env.spooncular_apiKey
+        }
+    });
+    return instructions.data;
+}
+
+
 async function getRandomRecipes(){ 
     return await axios.get(`${api_domain}/random`,{
         params: {
@@ -65,7 +76,7 @@ async function getRecipeDetails(recipe_id) {
 function originalIngredients(extendedIngredients){
     ingredients = [];
     for (let i = 0 ; i < extendedIngredients.length; i ++){
-        ingredients.push(extendedIngredients[i].original);
+        ingredients.push(extendedIngredients[i]);
     }
     return ingredients;
 }
@@ -134,3 +145,4 @@ exports.getRecipesPreview = getRecipesPreview;
 exports.getRecipeDetails = getRecipeDetails;
 exports.recipeSearch = recipeSearch;
 exports.getRandomThreeRecipes = getRandomThreeRecipes;
+exports.getRecipeAnalyzed = getRecipeAnalyzed;
