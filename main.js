@@ -5,8 +5,9 @@ var path = require("path");
 var logger = require("morgan");
 const session = require("client-sessions");
 const DButils = require("./routes/utils/DButils");
-var cors = require('cors')
+var cors = require('cors');
 var app = express();
+app.disable('etag');
 app.use(logger("dev")); //logger
 app.use(express.json()); // parse application/json
 app.use(

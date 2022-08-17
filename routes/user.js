@@ -105,6 +105,21 @@ router.get('/userRecipes/:recipeId', async (req,res,next) => {
     next(error); 
   }
 });
+<<<<<<< HEAD
+=======
+
+
+// router.get('/userRecipes/:recipeId', async (req,res,next) => {
+//   try{
+//     const user_id = req.session.user_id;
+//     const results = await user_utils.getUserRecipes(user_id);
+//     res.status(200).send(results);
+//   } catch(error){
+//     next(error); 
+//   }
+// });
+
+>>>>>>> 9a76f9b1581988eb98dd1fdcb23c948605920b8f
 
 /**
  * This path gets body with recipe_id and save this recipe in the history list of the logged-in user
@@ -119,6 +134,8 @@ router.get('/userRecipes/:recipeId', async (req,res,next) => {
     next(error);
   }
 })
+
+
 
 /**
  * This route returns the recipes the logged-in user has watched
@@ -252,5 +269,16 @@ router.delete('/resetMeal', async (req,res,next) => {
 });
 
 
+<<<<<<< HEAD
+=======
+// router.get("/latestHistory", async (req,res,next)=>{
+//   try{
+//    const user_id = req.session.user_id;
+//    const latest = await user_utils.getLatestThree(user_id);
+//    res.status(200).send(latest);
+//   }catch(err){next(err)}
+//  });
+
+>>>>>>> 9a76f9b1581988eb98dd1fdcb23c948605920b8f
 
 module.exports = router;
