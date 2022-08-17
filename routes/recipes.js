@@ -20,6 +20,17 @@ router.get("/", (req, res) => res.send("im here at the recipes"));
 
 
 /**
+ * This path returns a full details of a recipe by its id
+ */
+ router.get("/recipeAnalyzed/:recipeId", async (req, res, next) => {
+  try {
+    const recipe = await recipes_utils.getRecipeAnalyzed(req.params.recipeId);
+    res.send(recipe);
+  } catch (error) {
+    next(error);
+  }
+}); 
+/**
  * This path returns 3 random preview recipes
  */
  router.get("/random", async (req, res, next) => {
